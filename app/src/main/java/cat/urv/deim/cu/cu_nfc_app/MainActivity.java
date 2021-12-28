@@ -23,8 +23,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends Activity {
 
@@ -35,7 +41,7 @@ public class MainActivity extends Activity {
     boolean writeMode;
     Tag myTag;
     Context context;
-
+    private String text_NFC;
     TextView tvNFCContent;
     TextView message;
     Button btnWrite;
@@ -113,6 +119,18 @@ public class MainActivity extends Activity {
 
         tvNFCContent.setText("NFC Content: " + text);
         //Aqui es on aniria les dades al realtime database
+        text_NFC=text;
+
+
+    }
+
+    private void enviarDirebase(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://computacioubiquoa-default-rtdb.europe-west1.firebasedatabase.app/");
+        DatabaseReference myRef = database.getReference("entrades");
+        Map<String, Map<String, String>> entrades = new HashMap<>();
+        Map<String, String> entrada = new HashMap<>();
+        entrada.put("13:30", "sala 203");
+
     }
 
     private void write(String text, Tag tag) throws IOException, FormatException {

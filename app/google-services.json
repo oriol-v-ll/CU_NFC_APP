@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "638743840174",
+    "firebase_url": "https://computacioubiquoa-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "computacioubiquoa",
+    "storage_bucket": "computacioubiquoa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638743840174:android:93390a862dfaefe510f43f",
+        "android_client_info": {
+          "package_name": "cat.urv.deim.cu.computacioubiquoa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638743840174-m2ofeq5e690hpqkhpb0h9al2neoqeg8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtrFCg32jGrvpFZ42-ThSnDmbefgQsQb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638743840174-m2ofeq5e690hpqkhpb0h9al2neoqeg8j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638743840174:android:ee13f516891a7bac10f43f",
+        "android_client_info": {
+          "package_name": "cat.urv.deim.cu.cu_nfc_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638743840174-m2ofeq5e690hpqkhpb0h9al2neoqeg8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtrFCg32jGrvpFZ42-ThSnDmbefgQsQb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638743840174-m2ofeq5e690hpqkhpb0h9al2neoqeg8j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
