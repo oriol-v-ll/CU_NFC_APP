@@ -28,7 +28,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -124,12 +126,24 @@ public class MainActivity extends Activity {
 
     }
 
-    private void enviarDirebase(){
+    private void enviarFirebase(){
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://computacioubiquoa-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference myRef = database.getReference("entrades");
-        Map<String, Map<String, String>> entrades = new HashMap<>();
+        /*
+            Codi per obtenir data i hora actual
+         */
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
+        String currentDateandTime = sdf.format(new Date());
+        /* Ho deixo comentat
+            1r creem un mapa clau valor en el que guardarem el temps actual com a clau
+            i després el nom de la "sala" a la que accedim
+            2n agafem la referencia a la base de dades i accedim al "child" que
+            correspon al mail de l'usuari
+            3r li fem un push per afegir sense sobrescriure
+         */
         Map<String, String> entrada = new HashMap<>();
-        entrada.put("13:30", "sala 203");
+        entrada.put(currentDateandTime, room); // room és el contingut en string llegit del tag NFC
+        myRef.child(email).push(entrada); // email serà el valor del formulari de login introduit
 
     }
 
