@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <title>CU</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body>
+        <h1>Práctica computació obiqua</h1>
+        <div class="accordion" id="accordionExample">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <div class="accordion-item" id="item_template" style="visibility:hidden;">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <table class="table table-hover table-bordered" id="user_template">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script type="module">
+          // Import the functions you need from the SDKs you need
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+          import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+          // TODO: Add SDKs for Firebase products that you want to use
+          // https://firebase.google.com/docs/web/setup#available-libraries
+        
+          // Your web app's Firebase configuration
+          const firebaseConfig = {
+            apiKey: "AIzaSyBQiaBh7z2LIEO7dWUSvqYaKe1CrLveJGA",
+            authDomain: "computacioubiquoa.firebaseapp.com",
+            databaseURL: "https://computacioubiquoa-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "computacioubiquoa",
+            storageBucket: "computacioubiquoa.appspot.com",
+            messagingSenderId: "638743840174",
+            appId: "1:638743840174:web:115ace92a1a62fa810f43f"
+          };
+        
+          // Initialize Firebase
+          const app = initializeApp(firebaseConfig);
+        </script>
+        <script>
+            var accordion = $("#accordionExample");
+            var item_template = $("#item_template");
+            var user_template = $("#user_template");
+            accordion.html("");
+            // codi firebase que retorna els resultats
+            for(i = 0; i < 3; i++){
+                var item = item_template.clone();
+                var id = "item" + i;
+                item.find("button.accordion-button").html("Pol");
+                
+                item.find("div.accordion-collapse").attr("id",id);
+                item.find("button.accordion-button").attr("data-bs-target", "#"+id);
+                item.css("visibility", "");
+                if(i == 0){
+                    item.find("div.accordion-collapse").addClass("show");
+                }
+                accordion.append(item);
+            }
+        </script>
+
+    </body>
+</html>
