@@ -127,6 +127,8 @@ public class MainActivity extends Activity {
 
     }
 
+
+    //Al fer onclick al boto d'enviar s'hauria de verificar la informació dels camps i enviar la informacio
     private void enviarFirebase(){
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://computacioubiquoa-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference myRef = database.getReference("entrades");
@@ -147,7 +149,9 @@ public class MainActivity extends Activity {
         //S'hauria de mirar que el nom i el mail estigues ben escrit
         Map<String, String> entrada = new HashMap<>();
         entrada.put(currentDateandTime, text_NFC); // room és el contingut en string llegit del tag NFC
-        myRef.child(email).push(entrada); // email serà el valor del formulari de login introduit
+        //myRef.setValueAsync(entrada);
+        myRef.setValue(entrada);
+       // myRef.child(email).push(entrada); // email serà el valor del formulari de login introduit
 
     }
 
