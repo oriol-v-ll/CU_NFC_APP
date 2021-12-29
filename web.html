@@ -84,6 +84,8 @@
 			var item_template = $("#item_template");
 			var user_template = $("#user_template");
 			accordion.html("");
+
+
 			// codi firebase que retorna els resultats
 			for(var i = 0; i < 3; i++){
 				var item = item_template.clone();
@@ -98,6 +100,20 @@
 				}
 				accordion.append(item);
 			}
+			//llegeix dades una vegada:
+
+			import { getDatabase, ref, child, get } from "firebase/database";
+
+            const dbRef = ref(getDatabase());
+            get(child(dbRef, `users/${userId}`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+            } else {
+                console.log("No data available");
+            }
+            }).catch((error) => {
+            console.error(error);
+            });
         </script>
     </body>
 </html>

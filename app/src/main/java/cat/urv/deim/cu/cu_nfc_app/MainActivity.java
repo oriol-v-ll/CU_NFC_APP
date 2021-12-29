@@ -150,6 +150,7 @@ public class MainActivity extends Activity {
         //S'hauria de mirar que el nom i el mail estigues ben escrit
         Map<String, String> entrada = new HashMap<>();
         entrada.put(currentDateandTime, text_NFC); // room és el contingut en string llegit del tag NFC
+        entrada.put("email", email);
         //myRef.setValueAsync(entrada);
         myRef.child(name).setValue(entrada);
        // myRef.child(email).push(entrada); // El email dona error per ser la clau primària, ens haurem de guiar pel nom.

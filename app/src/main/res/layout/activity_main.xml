@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,7 +24,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20sp" >
+            android:layout_marginTop="20sp">
 
         </LinearLayout>
 
@@ -84,6 +86,27 @@
             android:layout_weight="1"
             android:text="Write"
             android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/Entrada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/send"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="245dp"
+            android:layout_marginBottom="59dp"
+            android:text="Entrada" />
+
+        <Button
+            android:id="@+id/sortida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/send"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="67dp"
+            android:layout_marginBottom="59dp"
+            android:text="Sortida" />
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
