@@ -127,7 +127,6 @@ public class MainActivity extends Activity {
 
     }
 
-
     //Al fer onclick al boto d'enviar s'hauria de verificar la informació dels camps i enviar la informacio
     private void enviarFirebase(){
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://computacioubiquoa-default-rtdb.europe-west1.firebasedatabase.app/");
@@ -153,7 +152,7 @@ public class MainActivity extends Activity {
         entrada.put(currentDateandTime, text_NFC); // room és el contingut en string llegit del tag NFC
         //myRef.setValueAsync(entrada);
         myRef.child(name).setValue(entrada);
-       // myRef.child(email).push(entrada); // email serà el valor del formulari de login introduit
+       // myRef.child(email).push(entrada); // El email dona error per ser la clau primària, ens haurem de guiar pel nom.
         int i =0;
     }
 
