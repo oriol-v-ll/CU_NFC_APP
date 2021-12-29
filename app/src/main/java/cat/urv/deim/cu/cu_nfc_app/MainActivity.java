@@ -135,7 +135,7 @@ public class MainActivity extends Activity {
         /*
             Codi per obtenir data i hora actual
          */
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss ");
         String currentDateandTime = sdf.format(new Date());
         /* Ho deixo comentat
             1r creem un mapa clau valor en el que guardarem el temps actual com a clau
@@ -146,13 +146,15 @@ public class MainActivity extends Activity {
          */
         EditText text = (EditText)findViewById(R.id.editTextTextEmailAddress);
         String email = text.getText().toString();
+        EditText txt = (EditText)findViewById(R.id.editTextTextPersonName);
+        String name = txt.getText().toString();
         //S'hauria de mirar que el nom i el mail estigues ben escrit
         Map<String, String> entrada = new HashMap<>();
         entrada.put(currentDateandTime, text_NFC); // room és el contingut en string llegit del tag NFC
         //myRef.setValueAsync(entrada);
-        myRef.setValue(entrada);
+        myRef.child(name).setValue(entrada);
        // myRef.child(email).push(entrada); // email serà el valor del formulari de login introduit
-
+        int i =0;
     }
 
     private void write(String text, Tag tag) throws IOException, FormatException {
@@ -200,6 +202,13 @@ public class MainActivity extends Activity {
     public void onResume(){
         super.onResume();
         WriteModeOn();
+
+        findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enviarFirebase();
+            }
+        });
     }
 
     private void WriteModeOn(){
