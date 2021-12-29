@@ -19,6 +19,7 @@ import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -141,8 +142,11 @@ public class MainActivity extends Activity {
             correspon al mail de l'usuari
             3r li fem un push per afegir sense sobrescriure
          */
+        EditText text = (EditText)findViewById(R.id.editTextTextEmailAddress);
+        String email = text.getText().toString();
+        //S'hauria de mirar que el nom i el mail estigues ben escrit
         Map<String, String> entrada = new HashMap<>();
-        entrada.put(currentDateandTime, room); // room és el contingut en string llegit del tag NFC
+        entrada.put(currentDateandTime, text_NFC); // room és el contingut en string llegit del tag NFC
         myRef.child(email).push(entrada); // email serà el valor del formulari de login introduit
 
     }
