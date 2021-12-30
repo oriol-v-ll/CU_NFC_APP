@@ -159,51 +159,21 @@ public class MainActivity extends Activity {
 
     }
 
-    private void enviarFirebaseSortida(){
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://computacioubiquoa-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference myRef = database.getReference("entrades");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss ");
-        String currentDateandTime = sdf.format(new Date());
-        /* Ho deixo comentat
-            1r creem un mapa clau valor en el que guardarem el temps actual com a clau
-            i després el nom de la "sala" a la que accedim
-            2n agafem la referencia a la base de dades i accedim al "child" que
-            correspon al mail de l'usuari
-            3r li fem un push per afegir sense sobrescriure
-         */
-        EditText text = (EditText)findViewById(R.id.editTextTextEmailAddress);
-        String email = text.getText().toString();
-        EditText txt = (EditText)findViewById(R.id.editTextTextPersonName);
-        String name = txt.getText().toString();
-        Map<String, String> entrada = new HashMap<>();
-        entrada.put("Sortida", currentDateandTime);
-        String Sortida = "Sortida";
-        myRef.child(name).child(Sortida).setValue(currentDateandTime);
 
-    }
-
-    private void enviarFirebaseEntrada(){
+    private void enviarFirebase(String accio){
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://computacioubiquoa-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference myRef = database.getReference("entrades");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");
         String currentDateandTime = sdf.format(new Date());
-        /* Ho deixo comentat
-            1r creem un mapa clau valor en el que guardarem el temps actual com a clau
-            i després el nom de la "sala" a la que accedim
-            2n agafem la referencia a la base de dades i accedim al "child" que
-            correspon al mail de l'usuari
-            3r li fem un push per afegir sense sobrescriure
-         */
         EditText text = (EditText)findViewById(R.id.editTextTextEmailAddress);
         String email = text.getText().toString();
         EditText txt = (EditText)findViewById(R.id.editTextTextPersonName);
         String name = txt.getText().toString();
-        Map<String, String> entrada = new HashMap<>();
-        entrada.put("Sala", text_NFC);
-        entrada.put("email", email);
-        entrada.put("Entrada", currentDateandTime);
-        entrada.put("Sortida", "");
-        myRef.child(name).setValue(entrada);
+        myRef.child(name).child("email").setValue(email);
+        Map<String, String> dades = new HashMap<>();
+        dades.put("Accio", accio);
+        dades.put("Aula",text_NFC);
+        myRef.child(name).child(currentDateandTime).setValue(dades);
 
 
     }
@@ -257,13 +227,13 @@ public class MainActivity extends Activity {
         findViewById(R.id.Entrada).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enviarFirebaseEntrada();
+                enviarFirebase("Entrada");
             }
         });
         findViewById(R.id.Sortida).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enviarFirebaseSortida();
+                enviarFirebase("Sortida");
             }
         });
         findViewById(R.id.Revisar_dades).setOnClickListener(new View.OnClickListener() {
