@@ -18,35 +18,18 @@
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <table class="table table-hover table-bordered" id="user_template">
+                    <table class="table table-hover table-bordered">
                         <thead>
                           <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Entrada</th>
+                            <th scope="col">Sortida</th>
+                            <th scope="col">Aula</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                          </tr>
+                        <tbody class="tbodyEntrades">
+
                         </tbody>
-                      </table>
+                    </table>
                 </div>
             </div>
         </div>
@@ -56,7 +39,7 @@
         <script type="module">
 			// Import the functions you need from the SDKs you need
 			import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-			import { getDatabase, ref, child, get, query, orderByKey } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+			import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 			import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
 			// TODO: Add SDKs for Firebase products that you want to use
 			// https://firebase.google.com/docs/web/setup#available-libraries
@@ -74,46 +57,56 @@
 		
 			// Initialize Firebase
 			const app = initializeApp(firebaseConfig);
-			const db = getDatabase();
-			const dbRef = ref(getDatabase(app));
-			
-			var data = query(ref(db, '/entrades'), orderByKey());
-			console.log(data)
-
-			var accordion = $("#accordionExample");
+      // initialize html elements
+      var accordion = $("#accordionExample");
 			var item_template = $("#item_template");
 			var user_template = $("#user_template");
-			accordion.html("");
+      
+      // get database reference
+			const db = getDatabase();
+			const dbRef = ref(db, 'entrades/');
+			// get database values
+			onValue(dbRef, (snapshot) => {
+        // neteja la taula aixi no s'acumulen
+        accordion.html("");
+        const entrades = snapshot.val();
+        var i = 0;
+        // for each value generate html
+        $.each(entrades, function(nom, entrada){
+          console.log(nom);
+          console.log(entrada);
+          var item = item_template.clone();
+          var id = "item"+i;
+          item.find("button.accordion-button").html(nom);
+          
+          item.find("div.accordion-collapse").attr("id",id);
+          item.find("button.accordion-button").attr("data-bs-target", "#"+id);
+          item.css("visibility", "");
+          item.find("div.accordion-collapse").addClass("show");
+          
+          var tbody = item.find(".tbodyEntrades");
+          var myTr = $("<tr></tr>");
+
+          myTr.append("<td>"+ entrada.Entrada + "</td>")
+              .append("<td>"+ entrada.Sortida + "</td>")
+              .append("<td>"+ entrada.Sala + "</td>");
+
+          tbody.append(myTr);
+
+          accordion.append(item);
+          i++;
+        })
+      });
+      
+
+			
 
 
 			// codi firebase que retorna els resultats
 			for(var i = 0; i < 3; i++){
-				var item = item_template.clone();
-				var id = "item" + i;
-				item.find("button.accordion-button").html("Pol");
 				
-				item.find("div.accordion-collapse").attr("id",id);
-				item.find("button.accordion-button").attr("data-bs-target", "#"+id);
-				item.css("visibility", "");
-				if(i == 0){
-					item.find("div.accordion-collapse").addClass("show");
-				}
-				accordion.append(item);
 			}
-			//llegeix dades una vegada:
-
-			import { getDatabase, ref, child, get } from "firebase/database";
-
-            const dbRef = ref(getDatabase());
-            get(child(dbRef, `users/${userId}`)).then((snapshot) => {
-            if (snapshot.exists()) {
-                console.log(snapshot.val());
-            } else {
-                console.log("No data available");
-            }
-            }).catch((error) => {
-            console.error(error);
-            });
+			
         </script>
     </body>
 </html>
