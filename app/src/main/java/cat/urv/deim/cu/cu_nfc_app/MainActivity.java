@@ -1,7 +1,24 @@
 package cat.urv.deim.cu.cu_nfc_app;
 
+import androidx.annotation.NonNull;
+import android.app.ActionBar;
+
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -17,6 +34,7 @@ import android.nfc.tech.Ndef;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +42,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -34,6 +54,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+
+
 
 public class MainActivity extends Activity {
 
@@ -48,6 +71,8 @@ public class MainActivity extends Activity {
     TextView tvNFCContent;
     TextView message;
     Button btnWrite;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,6 +102,9 @@ public class MainActivity extends Activity {
             }
         });
 
+
+
+
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter == null) {
             Toast.makeText(this, "Aquest dispositiu no soporta NFC", Toast.LENGTH_LONG).show();
@@ -88,6 +116,10 @@ public class MainActivity extends Activity {
         IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
         tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
         writeTagFilters = new IntentFilter[] { tagDetected };
+
+
+
+
     }
 
 
@@ -232,6 +264,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 enviarFirebaseSortida();
+            }
+        });
+        findViewById(R.id.Revisar_dades).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent firestore = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(firestore);
+                finish();
             }
         });
     }

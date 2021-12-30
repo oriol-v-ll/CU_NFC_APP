@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/drawer3"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -11,7 +12,16 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="16dp"
+
         tools:layout_editor_absoluteY="0dp">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:title="COMPUTACIO UBIQUOA" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,7 +49,7 @@
             android:id="@+id/editTextTextPersonName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/send"
+            android:layout_above="@+id/Revisar_dades"
             android:layout_marginBottom="264dp"
             android:ems="10"
             android:inputType="textPersonName"
@@ -49,26 +59,26 @@
             android:id="@+id/editTextTextEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/send"
+            android:layout_above="@+id/Revisar_dades"
             android:layout_marginBottom="191dp"
             android:ems="10"
             android:hint="email"
             android:inputType="textEmailAddress" />
 
         <Button
-            android:id="@+id/send"
+            android:id="@+id/Revisar_dades"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="119dp"
-            android:text="Enviar dades"
-            android:visibility="invisible" />
+            android:text="Dades"
+            android:visibility="visible" />
 
         <EditText
             android:id="@+id/edit_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/send"
+            android:layout_above="@+id/Revisar_dades"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginEnd="165dp"
@@ -82,7 +92,7 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/send"
+            android:layout_above="@+id/Revisar_dades"
             android:layout_marginBottom="-140dp"
             android:layout_weight="1"
             android:text="Write"
@@ -92,7 +102,7 @@
             android:id="@+id/Entrada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/send"
+            android:layout_above="@+id/Revisar_dades"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="245dp"
             android:layout_marginBottom="59dp"
@@ -102,12 +112,20 @@
             android:id="@+id/Sortida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/send"
+            android:layout_above="@+id/Revisar_dades"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="67dp"
             android:layout_marginBottom="59dp"
             android:text="Sortida" />
 
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navmenu3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:visibility="invisible"
+            app:headerLayout="@layout/cabecera_nav" />
+
     </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
