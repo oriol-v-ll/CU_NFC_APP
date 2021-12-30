@@ -20,7 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onResume();
 
 
-        findViewById(R.id.Entrada).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.Registrar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent firestore = new Intent(RegisterActivity.this, MainActivity.class);
