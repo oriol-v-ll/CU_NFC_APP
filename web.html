@@ -21,9 +21,9 @@
                     <table class="table table-hover table-bordered">
                         <thead>
                           <tr>
-                            <th scope="col">Entrada</th>
-                            <th scope="col">Sortida</th>
+                            <th scope="col">Hora</th>
                             <th scope="col">Aula</th>
+                            <th scope="col">Acció</th>
                           </tr>
                         </thead>
                         <tbody class="tbodyEntrades">
@@ -77,7 +77,7 @@
           console.log(entrada);
           var item = item_template.clone();
           var id = "item"+i;
-          item.find("button.accordion-button").html(nom);
+          item.find("button.accordion-button").html(nom + " (" + entrada.email + ")");
           
           item.find("div.accordion-collapse").attr("id",id);
           item.find("button.accordion-button").attr("data-bs-target", "#"+id);
