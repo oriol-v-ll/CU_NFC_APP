@@ -127,13 +127,9 @@ public class MainActivity extends Activity {
 
     }
 
-    //Al fer onclick al boto d'enviar s'hauria de verificar la informació dels camps i enviar la informacio
-    private void enviarFirebase(){
+    private void enviarFirebaseSortida(){
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://computacioubiquoa-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference myRef = database.getReference("entrades");
-        /*
-            Codi per obtenir data i hora actual
-         */
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss ");
         String currentDateandTime = sdf.format(new Date());
         /* Ho deixo comentat
@@ -147,14 +143,37 @@ public class MainActivity extends Activity {
         String email = text.getText().toString();
         EditText txt = (EditText)findViewById(R.id.editTextTextPersonName);
         String name = txt.getText().toString();
-        //S'hauria de mirar que el nom i el mail estigues ben escrit
         Map<String, String> entrada = new HashMap<>();
-        entrada.put(currentDateandTime, text_NFC); // room és el contingut en string llegit del tag NFC
+        entrada.put("Sortida", currentDateandTime);
+        String Sortida = "Sortida";
+        myRef.child(name).child(Sortida).setValue(currentDateandTime);
+
+    }
+
+    private void enviarFirebaseEntrada(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://computacioubiquoa-default-rtdb.europe-west1.firebasedatabase.app/");
+        DatabaseReference myRef = database.getReference("entrades");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");
+        String currentDateandTime = sdf.format(new Date());
+        /* Ho deixo comentat
+            1r creem un mapa clau valor en el que guardarem el temps actual com a clau
+            i després el nom de la "sala" a la que accedim
+            2n agafem la referencia a la base de dades i accedim al "child" que
+            correspon al mail de l'usuari
+            3r li fem un push per afegir sense sobrescriure
+         */
+        EditText text = (EditText)findViewById(R.id.editTextTextEmailAddress);
+        String email = text.getText().toString();
+        EditText txt = (EditText)findViewById(R.id.editTextTextPersonName);
+        String name = txt.getText().toString();
+        Map<String, String> entrada = new HashMap<>();
+        entrada.put("Sala", text_NFC);
         entrada.put("email", email);
-        //myRef.setValueAsync(entrada);
+        entrada.put("Entrada", currentDateandTime);
+        entrada.put("Sortida", "");
         myRef.child(name).setValue(entrada);
-       // myRef.child(email).push(entrada); // El email dona error per ser la clau primària, ens haurem de guiar pel nom.
-        int i =0;
+
+
     }
 
     private void write(String text, Tag tag) throws IOException, FormatException {
@@ -203,10 +222,16 @@ public class MainActivity extends Activity {
         super.onResume();
         WriteModeOn();
 
-        findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.Entrada).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enviarFirebase();
+                enviarFirebaseEntrada();
+            }
+        });
+        findViewById(R.id.Sortida).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enviarFirebaseSortida();
             }
         });
     }

@@ -61,7 +61,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="119dp"
-            android:text="Enviar dades" />
+            android:text="Enviar dades"
+            android:visibility="invisible" />
 
         <EditText
             android:id="@+id/edit_message"
@@ -98,7 +99,7 @@
             android:text="Entrada" />
 
         <Button
-            android:id="@+id/sortida"
+            android:id="@+id/Sortida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/send"
