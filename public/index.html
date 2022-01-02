@@ -4,12 +4,19 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Práctica computació obiqua</h1>
-        <div class="accordion" id="accordionExample">
-            <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
+      <div class="row d-flex justify-content-center">
+        <div class="card col-6">
+          <h3 class="card-header">Práctica computació obiqua</h3>
+          <div class="card-body">
+            <div class="accordion" id="accordionExample">
+              <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+              </div>
+          </div>
+          </div>
         </div>
+      </div>
+        <!-- Template to reuse for each element -->
         <div class="accordion-item" id="item_template" style="visibility:hidden;">
             <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -18,7 +25,7 @@
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <table class="table table-hover table-bordered">
+                    <table class="table table-hover table-bordered text-center">
                         <thead>
                           <tr>
                             <th scope="col">Hora</th>
@@ -85,13 +92,21 @@
           item.find("div.accordion-collapse").addClass("show");
           
           var tbody = item.find(".tbodyEntrades");
-          var myTr = $("<tr></tr>");
-
-          myTr.append("<td>"+ entrada.Entrada + "</td>")
-              .append("<td>"+ entrada.Sortida + "</td>")
-              .append("<td>"+ entrada.Sala + "</td>");
-
-          tbody.append(myTr);
+          $.each(entrada, function(timestamp, dades){
+            if(timestamp != "email"){
+              var myTr = $("<tr></tr>");
+  
+              myTr.append("<td>"+ timestamp + "</td>")
+                  .append("<td>"+ dades.Aula + "</td>");
+                  
+              if(dades.Accio == "Entrada"){
+                myTr.append("<td><span class='btn btn-sm btn-success'>"+ dades.Accio + "</span></td>");
+              }else{
+                myTr.append("<td><span class='btn btn-sm btn-danger'>"+ dades.Accio + "</span></td>");
+              }
+              tbody.append(myTr);
+            }
+          });          
 
           accordion.append(item);
           i++;
