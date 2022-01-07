@@ -236,14 +236,7 @@ public class MainActivity extends Activity {
                 enviarFirebase("Sortida");
             }
         });
-        findViewById(R.id.Revisar_dades).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent firestore = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(firestore);
-                finish();
-            }
-        });
+
     }
 
     private void WriteModeOn(){

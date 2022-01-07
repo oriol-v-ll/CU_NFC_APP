@@ -16,9 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CU_NFC_APP">
         <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
