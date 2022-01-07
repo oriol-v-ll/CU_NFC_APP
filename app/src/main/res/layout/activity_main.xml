@@ -72,7 +72,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="119dp"
             android:text="Dades"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
         <EditText
             android:id="@+id/edit_message"

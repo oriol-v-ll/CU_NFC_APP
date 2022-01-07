@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
     boolean writeMode;
     Tag myTag;
     Context context;
-    private String text_NFC;
+    private String text_NFC = "sense informació NFC"; //Fico que no hi hagi informació NFC de default
     TextView tvNFCContent;
     TextView message;
     Button btnWrite;
