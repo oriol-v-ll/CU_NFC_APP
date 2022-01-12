@@ -122,7 +122,6 @@ public class MainActivity extends Activity {
 
     }
 
-
     private void readFromIntent(Intent intent) {
         String action = intent.getAction();
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
